@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.42.0
+    container_name: prometheus
+    user: "1000:1000"
+    volumes:
+      - ./data/prometheus:/prometheus:Z
+      - ./prometheus:/etc/prometheus:Z
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    labels:
+      org.label-schema.group: "monitoring"
+
+  grafana:
+    image: grafana/grafana:9.4.3
+    container_name: grafana
+    user: "1000:1000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:Z
+      - ./data/grafana:/var/lib/grafana:Z
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    labels:
+      org.label-schema.group: "monitoring"
+

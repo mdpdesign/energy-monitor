@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  nodeexporter:
+    image: prom/node-exporter:v1.5.0
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    network_mode: host
+    labels:
+      org.label-schema.group: "monitoring"
+
+  tapoexporter:
+    image: povilasid/p110-exporter
+    container_name: p110-exporter
+    user: "1000:1000"
+    volumes:
+      - ./tapo/tapo.yml:/app/tapo.yaml:Z
+    ports:
+      - 9333:9333
+    environment:
+      - TAPO_EMAIL=${TAPO_EMAIL}
+      - TAPO_PASSWORD=${TAPO_PASSWORD}
+      - PORT=9333 # optional
+    restart: unless-stopped
+    labels:
+      org.label-schema.group: "monitoring"
