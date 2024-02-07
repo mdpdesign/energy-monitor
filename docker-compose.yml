@@ -1,6 +1,23 @@
 version: '3.7'
 
 services:
+  proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy-manager
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data/proxy-manager/data:/data
+      - ./data/proxy-manager/letsencrypt:/etc/letsencrypt
+    labels:
+      org.label-schema.group: "proxy"
+
   prometheus:
     image: prom/prometheus:v2.42.0
     container_name: prometheus
@@ -39,8 +56,9 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
+    restart: unless-stopped
     ports:
-      - 9110:8080
+      - 8080:8080
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

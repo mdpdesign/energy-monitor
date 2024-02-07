@@ -1,54 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    },
-    {
-      "name": "VAR_EUR_PER_KWH",
-      "type": "constant",
-      "label": "EUR/kWh",
-      "value": "0.21649",
-      "description": "Static kWh price"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.0.3"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -74,16 +24,16 @@
   "description": "Tapo P110",
   "editable": true,
   "fiscalYearStartMonth": 0,
+  "gnetId": 17104,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1667074071060,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -110,7 +60,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -129,12 +79,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -150,7 +100,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -171,14 +121,14 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "currencyPLN"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 4,
+        "w": 6,
+        "x": 6,
         "y": 0
       },
       "id": 12,
@@ -196,16 +146,16 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (room)(tapo_p110_today_energy_wh{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"}/1000*$eur_per_kWh)",
+          "expr": "sum by (room)(tapo_p110_today_energy_wh{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"}/1000*$pln_per_kWh)",
           "legendFormat": "{{machine}}",
           "range": true,
           "refId": "A"
@@ -217,7 +167,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -244,7 +194,7 @@
       "gridPos": {
         "h": 6,
         "w": 3,
-        "x": 9,
+        "x": 12,
         "y": 0
       },
       "id": 6,
@@ -262,12 +212,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
           "expr": "tapo_p110_device_count{job=\"$job\", machine=\"$machine\"}",
@@ -282,7 +232,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -310,8 +260,8 @@
       },
       "gridPos": {
         "h": 12,
-        "w": 12,
-        "x": 12,
+        "w": 9,
+        "x": 15,
         "y": 0
       },
       "id": 4,
@@ -328,12 +278,12 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by (room)(tapo_p110_power_consumption_w{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"})",
@@ -348,7 +298,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -376,7 +326,7 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 4,
+        "w": 6,
         "x": 0,
         "y": 6
       },
@@ -395,12 +345,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "sum by (room) (tapo_p110_month_energy_wh{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"})",
@@ -415,7 +365,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -436,14 +386,14 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "currencyPLN"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 4,
+        "w": 6,
+        "x": 6,
         "y": 6
       },
       "id": 14,
@@ -461,16 +411,16 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (room)(tapo_p110_month_energy_wh{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"}/1000*$eur_per_kWh)",
+          "expr": "sum by (room)(tapo_p110_month_energy_wh{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"}/1000*$pln_per_kWh)",
           "legendFormat": "{{machine}}",
           "range": true,
           "refId": "A"
@@ -482,7 +432,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -503,14 +453,14 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "currencyPLN"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 6,
         "w": 3,
-        "x": 9,
+        "x": 12,
         "y": 6
       },
       "id": 16,
@@ -528,27 +478,27 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.3",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "$eur_per_kWh",
+          "expr": "$pln_per_kWh",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "EUR/kWh",
+      "title": "PLN/kWh",
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -556,6 +506,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -612,7 +564,8 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
           "mode": "single",
@@ -624,7 +577,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
           "expr": "tapo_p110_power_consumption_w{job=\"$job\", machine=\"$machine\", room=~\"$rooms\"}",
@@ -637,37 +590,30 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 36,
+  "refresh": "10s",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "hide": 2,
-        "label": "EUR/kWh",
-        "name": "eur_per_kWh",
-        "query": "${VAR_EUR_PER_KWH}",
+        "label": "PLN/kWh",
+        "name": "pln_per_kWh",
+        "query": "0.4995",
         "skipUrlSync": false,
-        "type": "constant",
-        "current": {
-          "value": "${VAR_EUR_PER_KWH}",
-          "text": "${VAR_EUR_PER_KWH}",
-          "selected": false
-        },
-        "options": [
-          {
-            "value": "${VAR_EUR_PER_KWH}",
-            "text": "${VAR_EUR_PER_KWH}",
-            "selected": false
-          }
-        ]
+        "type": "constant"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "tapo",
+          "value": "tapo"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(tapo_p110_today_energy_wh, job)",
         "hide": 0,
@@ -687,10 +633,14 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "home",
+          "value": "home"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(tapo_p110_today_energy_wh, machine)",
         "hide": 0,
@@ -710,10 +660,14 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(tapo_p110_today_energy_wh, room)",
         "hide": 0,
@@ -742,7 +696,6 @@
   "timezone": "",
   "title": "Energy monitoring",
   "uid": "c40p3MV4z",
-  "version": 8,
-  "weekStart": "",
-  "gnetId": 17104
+  "version": 12,
+  "weekStart": ""
 }
